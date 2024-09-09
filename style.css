@@ -62,12 +62,12 @@ body {
   }
   
   .close:hover {
-    background-color: #f44336;
+    background-color: rgba(244, 54, 54, 0.705);
     color: white;
   }
   
   .header {
-    background-color: #f44336;
+    background-color: #61e20a;
     padding: 30px 40px;
     color: white;
     text-align: center;
@@ -104,4 +104,7 @@ body {
   
   .addBtn:hover {
     background-color: #bbb;
+  }
+  h2{
+     margin:5px
   }

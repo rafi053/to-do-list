@@ -1,24 +1,22 @@
-var myNodelist = document.getElementsByTagName("LI");
-var i;
+const myNodelist = document.querySelector("LI");
 for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
+  const span = document.createElement("SPAN");
   span.className = "close";
-  span.appendChild(txt);
   myNodelist[i].appendChild(span);
+  
+  
 }
 
 
-var close = document.getElementsByClassName("close");
-var i;
+const close = document.querySelector("close");
 for (i = 0; i < close.length; i++) {
   close[i].onclick = function() {
-    var div = this.parentElement;
+    const div = this.parentElement;
     div.style.display = "none";
   }
 }
 
-var list = document.querySelector('ul');
+const list = document.querySelector('ul');
 list.addEventListener('click', function(ev) {
   if (ev.target.tagName === 'LI') {
     ev.target.classList.toggle('checked');
@@ -26,11 +24,11 @@ list.addEventListener('click', function(ev) {
 }, false);
 
 
+//  יצירת משימה חדשה
 function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
+  const li = document.createElement("li");
+  const inputValue = document.getElementById("myInput").value;
+  li.appendChild(inputValue);
   if (inputValue === '') {
     alert("You must write something!");
   } else {
@@ -38,15 +36,15 @@ function newElement() {
   }
   document.getElementById("myInput").value = "";
 
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
+  const span = document.createElement("SPAN");
+  const txt = document.createTextNode("\u00D7");
   span.className = "close";
   span.appendChild(txt);
   li.appendChild(span);
 
   for (i = 0; i < close.length; i++) {
     close[i].onclick = function() {
-      var div = this.parentElement;
+      const div = this.parentElement;
       div.style.display = "none";
     }
   }
