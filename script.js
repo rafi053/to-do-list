@@ -1,51 +1,49 @@
-const myNodelist = document.querySelector("LI");
-for (i = 0; i < myNodelist.length; i++) {
-  const span = document.createElement("SPAN");
-  span.className = "close";
-  myNodelist[i].appendChild(span);
-  
-  
+const myInput = document.getElementById("myInput");
+const myUL = document.getElementById("myUL");
+
+
+// טעינת localStorage בעת טעינת הדף
+window.onload = function() {
+  myUL.innerHTML = localStorage.getItem("list");
 }
 
 
-const close = document.querySelector("close");
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    const div = this.parentElement;
-    div.style.display = "none";
+
+
+// יצירת משימה חדשה
+function newElement() {
+  if (myInput.value === "") {
+    alert("הוסף משימה חדשה");
+  } 
+  else {
+    let li = document.createElement("li");
+    li.innerText = myInput.value;
+    myUL.appendChild(li);
+    let span = document.createElement("span");
+    span.innerHTML = "\u00D7";
+    li.appendChild(span);
   }
+  myInput.value = "";
+
+  saveList();
 }
 
-const list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
+myUL.addEventListener("click", function(e) {
+  if (e.target.tagName === "LI") {
+    e.target.classList.toggle("checked");
+    saveList();
+  }
+  else if (e.target.tagName === "SPAN") {
+    e.target.parentElement.remove();
+    saveList();
   }
 }, false);
 
 
-//  יצירת משימה חדשה
-function newElement() {
-  const li = document.createElement("li");
-  const inputValue = document.getElementById("myInput").value;
-  li.appendChild(inputValue);
-  if (inputValue === '') {
-    alert("You must write something!");
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
 
-  const span = document.createElement("SPAN");
-  const txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
 
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      const div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
+// שמירה ב localStorage
+function saveList() {
+  localStorage.setItem("list", myUL.innerHTML);
 }
+
