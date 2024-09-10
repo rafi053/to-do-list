@@ -1,5 +1,8 @@
-const myInput = document.getElementById("myInput");
-const myUL = document.getElementById("myUL");
+let input = document.querySelector("#input");
+let table = document.querySelector("#table");
+let tbody = document.querySelector("#table > tbody");
+
+
 
 
 // טעינת localStorage בעת טעינת הדף
@@ -11,22 +14,36 @@ window.onload = function() {
 
 
 // יצירת משימה חדשה
-function newElement() {
-  if (myInput.value === "") {
+function addMission() {
+  if (input.value === "") {
     alert("הוסף משימה חדשה");
   } 
   else {
-    let li = document.createElement("li");
-    li.innerText = myInput.value;
-    myUL.appendChild(li);
-    let span = document.createElement("span");
-    span.innerHTML = "\u00D7";
-    li.appendChild(span);
-  }
-  myInput.value = "";
+    let tr = document.createElement("tr");
+    tbody.appendChild(tr);
+    let id = document.createElement("td");
+    let toDo = document.createElement("td");
+    let status = document.createElement("td");
+    let actions = document.createElement("td");
+    tr.appendChild(id);
+    tr.appendChild(toDo); 
+    tr.appendChild(status);
+    tr.appendChild(actions);
+    id.textContent = getGuid();
+    toDo.textContent = input.value;
 
-  saveList();
+  }
+  
 }
+
+// קבל GUID עם תאריך עדכני
+
+function getGuid(){
+
+  return Math.random() + Date.now();
+
+}
+
 
 myUL.addEventListener("click", function(e) {
   if (e.target.tagName === "LI") {
